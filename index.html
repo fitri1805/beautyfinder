@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Finder</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo">
+            <h1>BeautyLab</h1>
+        </div>
+        <div class="header-icons">
+            <a href="crud.html" class="icon"><img src="wishlist.png" alt="Wishlist"></a>
+        </div>
+    </header>
+
+  <!-- Hero Section with YouTube Video -->
+  
+    <section class="hero-section">
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/Gi9aIuFquUE?si=FZzUYCkTyDWFcUDA" 
+                frameborder="0" 
+                allowfullscreen 
+                class="background-video">
+            </iframe>
+        </div>
+        <div class="hero-content">
+            <h2>Discover Your Beauty</h2>
+            <p>Explore our collection and find your perfect match.</p>
+        </div>
+    </section>
+
+    <div class="app-container">
+        <!-- Search Area -->
+        <div class="search-area">
+            <input type="text" id="beauty_input" placeholder="Enter beauty brand...">
+            <button id="search-button" onclick="buttonClicked()">Search</button>
+        </div>
+
+      <!-- Filter Section -->
+      <div class="filter-section" id="filter-section" style="display: none;">
+        <h3>Filter Results</h3>
+        <div class="filter-options">
+        <label for="price-filter">Price:</label>
+        <select id="price-filter">
+            <option value="all">All</option>
+            <option value="0-10">Under $10</option>
+            <option value="10-20">$10 - $20</option>
+            <option value="20-50">$20 - $50</option>
+            <option value="50+">Above $50</option>
+        </select>
+
+        <label for="rating-filter">Rating:</label>
+        <select id="rating-filter">
+            <option value="all">All</option>
+            <option value="4+">4 Stars & Up</option>
+            <option value="3+">3 Stars & Up</option>
+            <option value="2+">2 Stars & Up</option>
+            <option value="1+">1 Star & Up</option>
+        </select>
+      </div>
+      <button onclick="applyFilters()">Apply Filters</button>
+    </div>
+
+    <!-- Results Container -->
+    <div id="results-container" class="product-grid">
+        <!-- All products will be displayed here -->
+    </div>
+</div>
+
+       <!-- Recommended Products Section -->
+      <section class="recommended-products">
+        <h3>Top Recommended Products</h3>
+        <div class="carousel-container">
+            <button class="arrow left-arrow" onclick="prevProducts()">&#10094;</button>
+            <div class="recommended-products-grid" id="recommended-products-container">
+                <!-- Recommended products will be populated here -->
+            </div>
+            <button class="arrow right-arrow" onclick="nextProducts()">&#10095;</button>
+        </div>
+      </section>
+
+       <!-- All Products Section -->
+        <section class="all-products">
+            <h3>Available Brands</h3>
+            <div class="brands-box">
+                <ul>
+                    <li>maybelline</li>
+                    <li>l'oreal</li>
+                    <li>revlon</li>
+                    <li>nyx</li>
+                    <li>covergirl</li>
+                    <li>clinique</li>
+                    <li>coastal classic creation</li>
+                    <li>fenty</li>
+                    <li>glossier</li>
+                    <li>green people</li>
+                    <li>iman</li>
+                    <li>MAC</li>
+                    <li>maia's mineral galaxy</li>
+                    <li>lotus cosmetics usa</li>
+                    <li>marcelle</li>
+                    <li>marienatie</li>
+                    <li>pacifica</li>
+                    <li>Smashbox</li>
+                    <li>penny lane organics</li>
+                    <li>benefit</li>
+                    <li>boosh</li>
+                    <li>burt's bees</li>
+                    <li>butter london</li>
+                    <li>c'est moi</li>
+                    <li>cargo cosmetics</li>
+                    <li>china glaze</li>
+                    <li>dalish</li>
+                    <li>daciem</li>
+                    <li>dr.hauschka</li>
+                    <li>milani</li>
+                    <li>mineral fusion</li>
+                    <li>misa</li>
+                    <li>mistura</li>
+                    <li>moov</li>
+                    <li>nudus</li>
+                    <li>orly</li>
+                    <li>physicians formula</li>
+                    <li>sally b's skin yummies</li>
+                    <li>salon perfect</li>
+                    <li>sante</li>
+                    <li>almay</li>
+                    <li>rejuva minerals</li>
+                    <li>Glossier</li>
+                    <li>pure anada</li>
+                    <li>piggy paint</li>
+                    <li>sinful colours</li>
+                    <li>anna sui</li>
+                    <li>dior</li>
+                    <li>alva</li>
+                    <li>annabelle</li>
+                    <li>stila</li>
+                    <li>suncoat</li>
+                    <li>w3llpeople</li>
+                    <li>wet n wild</li>
+                    <li>zorah</li>
+                    <li>zorah biocosmetiques</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Partnership or Collaboration Section -->
+        <section class="partnership-section">
+            <h3>Partnerships & Collaborations</h3>
+            <p>We are proud to collaborate with various brands to bring you the best products. Check out our partners:</p>
+            <div class="partners-grid">
+                <div class="partner">
+                    <img src="benefit.png" alt="Partner 1 Logo">
+                </div>
+                <div class="partner">
+                    <img src="Clinique-Logo.png" alt="Partner 2 Logo">
+                </div>
+                <div class="partner">
+                    <img src="mac.jpg" alt="Partner 3 Logo">
+                </div>
+                <div class="partner">
+                    <img src="maybelline.png" alt="Partner 4 Logo">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Results Container -->
+        <div id="results-container" class="product-grid">
+            <!-- All products will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2024 BeautyLab. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:support@beautylab.com">support@beautylab.com</a></p>
+        <p>Follow us on 
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a>
+        </p>
+    </footer>
+
+    <script src="all.js"></script>
+</body>
+</html>

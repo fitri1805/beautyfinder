@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+     <!-- Header -->
+     <header class="main-header">
+        <div class="logo">
+            <h1>BeautyLab</h1>
+        </div>
+        <div class="header-icons">
+            <a href="crud.html" class="icon"><img src="wishlist.png" alt="Wishlist"></a>
+        </div>
+    </header>
+
+    <div id="product-detail-container">
+        <!-- Product details will be here -->
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 BeautyLab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            name: params.get('name'),
+            brand: params.get('brand'),
+            price: params.get('price'),
+            rating: params.get('rating'),
+            description: params.get('description'),
+            image: params.get('image'),
+            product_type: params.get('product_type'),
+            link: params.get('link'),
+            note: params.get('note'), 
+            colors: JSON.parse(params.get('colors')) 
+        };
+    }
+
+        function displayProductDetail() {
+            const product = getQueryParams();
+            const container = document.getElementById("product-detail-container");
+
+            container.innerHTML = `
+                <h2>${product.name}</h2>
+                <img src="${product.image}" alt="${product.name}">
+                <p><strong>Brand:</strong> ${product.brand}</p>
+                <p><strong>Price:</strong> $${product.price}</p>
+                <p><strong>Rating:</strong> ${product.rating ? product.rating : 'N/A'}</p>
+                <p><strong>Description:</strong> ${product.description ? product.description : 'No description available.'}</p>
+                <p><strong>Note:</strong> ${product.note ? product.note : 'No note added.'}</p> <!-- Display note -->
+                <p><strong>Product Type:</strong> ${product.product_type ? product.product_type : 'N/A'}</p>
+                <p><strong>Website Link:</strong> <a href="${product.website_link}" target="_blank">Visit Website</a></p>
+                <p><strong>Available Colors:</strong></p>
+                <div class="colors-container">${product.colors.map(color => `
+                    <div class="color-item">
+                        <div class="color-box" style="background-color: ${color.hex_value};" title="${color.colour_name}"></div>
+                        <span class="color-label">${color.colour_name}</span>
+                    </div>
+                `).join('')}</div>
+                <p><a href="${product.link}" target="_blank">View Product</a></p>
+                <div class="button-container">
+                    <a href="index.html"><button id="back-button">Back</button></a>
+                    <button id="wishlist-button" onclick="addToWishlist('${product.name}', '${product.brand}', '${product.image}', '${product.price}', '${product.note}')">Add to Wishlist</button>
+                </div>
+            `;
+        }
+        
+            function addToWishlist(name, brand, image, price, note) {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const wishlistItem = { name, brand, image, price, note };
+                wishlist.push(wishlistItem);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                alert(`${name} by ${brand} added to wishlist!`);
+            }
+        
+        displayProductDetail();
+    </script>    
+</body>
+</html>
